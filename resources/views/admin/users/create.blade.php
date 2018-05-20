@@ -13,16 +13,16 @@
             {!! Form::text('email', null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('role', 'Role') !!}
-            {!! Form::select('role', [''=>'Choose Role'] + $roles, null, ['class'=>'form-control']) !!}
+            {!! Form::label('role_id', 'Role') !!}
+            {!! Form::select('role_id', [''=>'Choose Role'] + $roles, null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('is_active', 'Status') !!}
             {!! Form::select('is_active', array(1=>'Active', 0=>'Inactive'), null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('file', 'File') !!}
-            {!! Form::file('file', null, ['class'=>'form-control']) !!}
+            {!! Form::label('photo_id', 'Photo') !!}
+            {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('password', 'Password') !!}
