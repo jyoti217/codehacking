@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+    @if(Session::has('success'))
+        <p class="bg-success">{{session('success')}}</p>
+    @endif
+    @if(Session::has('failure'))
+    <p class="bg-danger">{{session('failure')}}</p>
+    @endif
     <h1>Admin/Users</h1>
 
     <table class="table">

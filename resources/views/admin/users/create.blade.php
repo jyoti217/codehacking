@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('is_active', 'Status') !!}
-            {!! Form::select('is_active', array(1=>'Active', 0=>'Inactive'), null, ['class'=>'form-control']) !!}
+            {!! Form::select('is_active', array(1=>'Active', 2=>'Inactive'), null, ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('photo_id', 'Photo') !!}
@@ -29,7 +29,7 @@
             {!! Form::password('password', ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::submit('Save User', null, ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Save User', ['class'=>'btn btn-primary']) !!}
         </div>
     {!! Form::close() !!}
 
