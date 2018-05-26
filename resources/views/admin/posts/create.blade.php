@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('category_id', 'Category') !!}
-        {!! Form::select('category_id', array(1=>'Active', 0=>'Inactive'), null, ['class'=>'form-control']) !!}
+        {!! Form::select('category_id', [''=>'Choose Category'] + $categories, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('body', 'Body') !!}

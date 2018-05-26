@@ -13,6 +13,7 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Category</th>
             <th>Photo</th>
             <th>Title</th>
             <th>User</th>
@@ -27,6 +28,7 @@
             @foreach($posts as $post)
                 <tr>
                     <td>{{$post->id}}</td>
+                    <td>{{$post->category->name?$post->category->name:'Uncagegoriesd' }}</td>
                     <td><img height="40" src="{{$post->photo?$post->photo->file:'http://placehold.it/400x400'}}" alt=""></td>
                     <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
                     <td><a href="{{route('admin.users.edit', $post->user_id)}}">{{$post->user->name}}</a></td>
