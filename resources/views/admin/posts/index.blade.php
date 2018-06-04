@@ -18,6 +18,8 @@
             <th>Title</th>
             <th>User</th>
             <th>Body</th>
+            <th>View post</th>
+            <th>View comments</th>
             <th>Created At</th>
             <th>Updated At</th>
         </tr>
@@ -32,7 +34,9 @@
                     <td><img height="40" src="{{$post->photo?$post->photo->file:'http://placehold.it/400x400'}}" alt=""></td>
                     <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
                     <td><a href="{{route('admin.users.edit', $post->user_id)}}">{{$post->user->name}}</a></td>
-                    <td>{{$post->body}}</td>
+                    <td>{{str_limit($post->body, 30)}}</td>
+                    <td><a href="{{route('home.post', $post->slug?$post->slug:$post->id)}}">view post</a></td>
+                    <td><a href="{{route('admin.comments.show', $post->id)}}">view comments</a></td>
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
                 </tr>
@@ -40,4 +44,9 @@
         @endif
         </tbody>
     </table>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-5">
+            {{$posts->render()}}
+        </div>
+    </div>
 @endsection

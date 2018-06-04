@@ -2,11 +2,20 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Model implements SluggableInterface
 {
     //
+    use SluggableTrait;
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to' => 'slug',
+        'on_update' => true
+    ];
     protected $fillable = ['title', 'body', 'user_id', 'category_id', 'photo_id'];
 
     public function user(){
@@ -19,5 +28,9 @@ class Post extends Model
 
     public function category(){
         return $this->belongsTo('App\Category');
+    }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
     }
 }

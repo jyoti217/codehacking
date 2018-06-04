@@ -23,7 +23,7 @@ class AdminPostsController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -123,5 +123,11 @@ class AdminPostsController extends Controller
         $post->delete();
         Session::flash('success', "Post successfully deleted");
         return redirect('/admin/posts');
+    }
+
+    public function post($slugorid){
+        $post = Post::findBySlugOrId($slugorid);
+        $comments = $post->comments;
+        return view('post', compact('post', 'comments') );
     }
 }

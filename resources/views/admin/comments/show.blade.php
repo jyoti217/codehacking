@@ -15,7 +15,6 @@
             <th>ID</th>
             <th>Author</th>
             <th>Post</th>
-            <th>Replies</th>
             <th>Created At</th>
             <th>Updated At</th>
         </tr>
@@ -28,7 +27,6 @@
                     <td>{{$comment->id}}</td>
                     <td>{{$comment->author}}</td>
                     <td><a href="{{route('admin.posts.edit', $comment->post->id)}}">{{$comment->post->title}}</a></td>
-                    <td><a href="{{route('admin.comment.replies.show', $comment->id)}}">view replies</a></td>
                     <td>{{$comment->created_at ? $comment->created_at->diffForHumans():'--'}}</td>
                     <td>{{$comment->updated_at ? $comment->updated_at->diffForHumans() : '--'}}</td>
                     <td>

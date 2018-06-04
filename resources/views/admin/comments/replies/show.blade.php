@@ -14,33 +14,32 @@
         <tr>
             <th>ID</th>
             <th>Author</th>
-            <th>Post</th>
+            <th>Comment</th>
             <th>Replies</th>
             <th>Created At</th>
             <th>Updated At</th>
         </tr>
         </thead>
         <tbody>
-        @if($comments)
+        @if($replies)
             {{-- @php(dd($posts))--}}
-            @foreach($comments as $comment)
+            @foreach($replies as $reply)
                 <tr>
-                    <td>{{$comment->id}}</td>
-                    <td>{{$comment->author}}</td>
-                    <td><a href="{{route('admin.posts.edit', $comment->post->id)}}">{{$comment->post->title}}</a></td>
-                    <td><a href="{{route('admin.comment.replies.show', $comment->id)}}">view replies</a></td>
-                    <td>{{$comment->created_at ? $comment->created_at->diffForHumans():'--'}}</td>
-                    <td>{{$comment->updated_at ? $comment->updated_at->diffForHumans() : '--'}}</td>
+                    <td>{{$reply->id}}</td>
+                    <td>{{$reply->author}}</td>
+                    <td><a href="{{route('home.post', $reply->comment->post->id)}}">view post</a></td>
+                    <td>{{$reply->created_at ? $reply->created_at->diffForHumans():'--'}}</td>
+                    <td>{{$reply->updated_at ? $reply->updated_at->diffForHumans() : '--'}}</td>
                     <td>
-                        @if($comment->is_active == 1)
-                            {!! Form::open(['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]]) !!}
+                        @if($reply->is_active == 1)
+                            {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}
                             <input type="hidden" name="is_active" value="0">
                             <div class="form-group">
                                 {!! Form::submit('Disapprove', ['class'=>'btn btn-warning']) !!}
                             </div>
                             {!! Form::close() !!}
                         @else
-                            {!! Form::open(['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]]) !!}
+                            {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}
                             <input type="hidden" name="is_active" value="1">
                             <div class="form-group">
                                 {!! Form::submit('Approve', ['class'=>'btn btn-primary']) !!}
@@ -51,7 +50,7 @@
 
                     <td>
 
-                        {!! Form::open(['method'=>'DELETE', 'action'=>['PostCommentsController@destroy', $comment->id]]) !!}
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['CommentRepliesController@destroy', $reply->id]]) !!}
                         <div class="form-group">
                             {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
                         </div>
