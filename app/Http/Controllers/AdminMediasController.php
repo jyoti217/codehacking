@@ -35,8 +35,27 @@ class AdminMediasController extends Controller
         $file = Photo::findOrFail($id);
         @unlink(public_path().$file->file);
         $file->delete();
-        Session::flash('success', "media successfully deleted");
+
         return redirect('/admin/media');
+    }
+
+    public function deleteMedia(Request $request)
+    {
+
+        if(isset($request->delete_single)){
+            Session::flash('success', "media successfully deleted");
+            $this->destroy($request->single_delete_id);
+            return redirect()->back();
+        }else if (isset($request->delete_selected) && !empty($request->deleteArray)){
+            $photos = Photo::findorfail($request->deleteArray);
+            foreach ($photos as $photo){
+                $photo->delete();
+            }
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
+
     }
 
 }
